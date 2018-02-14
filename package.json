@@ -1,0 +1,15 @@
+{
+  "name": "pixel-charts",
+  "version": "0.0.0",
+  "description": "Pixel Charts",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel example.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brad Bohen",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.5.1"
+  }
+}
