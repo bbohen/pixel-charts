@@ -1,5 +1,6 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  background: #282a36;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .graph .labels.x-labels {
@@ -11,12 +12,13 @@ body {
 }
 
 .graph {
+  fill: #ffb86c;
   height: 500px;
   width: 800px;
 }
 
 .graph .grid {
-  stroke: #ccc;
+  stroke: #44475a;
   stroke-dasharray: 0;
   stroke-width: 1;
 }
@@ -33,6 +35,5 @@ body {
 }
 
 .data {
-  fill: red;
   stroke-width: 1;
 }
