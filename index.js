@@ -3,7 +3,8 @@
 import './styles.css';
 
 const CHART_HEIGHT = 365;
-const CUBE_SIZE = 8;
+const CUBE_SIZE = 10;
+let totalIndex = 0;
 
 function createLineCords(startX, startY, count, nextY, nextX) {
   // TODO: Clean this turd up
@@ -30,29 +31,76 @@ function createLineCords(startX, startY, count, nextY, nextX) {
   );
 }
 
+function createSvgRectForPoint(
+  previousPointSet,
+  currentPointSet,
+  nextPointSet,
+  index
+) {
+  const svgns = 'http://www.w3.org/2000/svg';
+  const rect = document.createElementNS(svgns, 'rect');
+  const yValueWillChange =
+    nextPointSet && nextPointSet[1] !== currentPointSet[1];
+  const indexIsOdd = index & 1;
+
+  rect.setAttributeNS(null, 'x', currentPointSet[0]);
+  rect.setAttributeNS(null, 'y', currentPointSet[1]);
+  rect.setAttributeNS(null, 'height', CUBE_SIZE);
+  rect.setAttributeNS(null, 'width', CUBE_SIZE);
+
+  if (previousPointSet && nextPointSet && !yValueWillChange) {
+    rect.setAttributeNS(null, 'x', currentPointSet[0]);
+    if (indexIsOdd) {
+      rect.setAttributeNS(null, 'y', currentPointSet[1] - CUBE_SIZE / 3);
+    }
+  }
+
+  return rect;
+}
+
+function createSvgAnimate(duration = 3) {
+  const svgns = 'http://www.w3.org/2000/svg';
+  const animate = document.createElementNS(svgns, 'animate');
+
+  animate.setAttributeNS(null, 'attributeName', 'fill');
+  animate.setAttributeNS(null, 'values', '#ffb86c;#282a36;#ffb86c');
+  animate.setAttributeNS(null, 'dur', `${duration}s`);
+  animate.setAttributeNS(null, 'repeatCount', 'indefinite');
+
+  return animate;
+}
+
 function renderPointsToSvg(points = []) {
   const svgns = 'http://www.w3.org/2000/svg';
   points.forEach((pointSet, index) => {
-    const rect = document.createElementNS(svgns, 'rect');
     const previousPointSet = points[index - 1];
     const nextPointSet = points[index + 1];
-    const yValueWillChange = nextPointSet && nextPointSet[1] !== pointSet[1];
+    const rect = createSvgRectForPoint(
+      previousPointSet,
+      pointSet,
+      nextPointSet,
+      index
+    );
+    const animate = createSvgAnimate(totalIndex);
 
-    rect.setAttributeNS(null, 'x', pointSet[0]);
-    rect.setAttributeNS(null, 'y', pointSet[1]);
-    rect.setAttributeNS(null, 'height', CUBE_SIZE);
-    rect.setAttributeNS(null, 'width', CUBE_SIZE);
-
-    if (previousPointSet && nextPointSet && !yValueWillChange) {
-      rect.setAttributeNS(
-        null,
-        'transform',
-        `rotate(45, ${pointSet[0] + CUBE_SIZE / 2}, ${pointSet[1] +
-          CUBE_SIZE / 2})`
-      );
-    }
+    // rect.appendChild(animate);
 
     document.getElementById('svgOne').appendChild(rect);
+
+    const randomInt = Math.floor(Math.random() * Math.floor(points.length / 2));
+
+    if (randomInt < 1) {
+      const rect2 = document.createElementNS(svgns, 'rect');
+      const animate2 = createSvgAnimate(totalIndex);
+      rect2.setAttributeNS(null, 'x', pointSet[0]);
+      rect2.setAttributeNS(null, 'y', pointSet[1] - CUBE_SIZE / 3);
+      rect2.setAttributeNS(null, 'height', CUBE_SIZE);
+      rect2.setAttributeNS(null, 'width', CUBE_SIZE);
+      // rect2.appendChild(animate2);
+      document.getElementById('svgOne').appendChild(rect2);
+    }
+
+    totalIndex += 1;
   });
 }
 
