@@ -3,7 +3,7 @@
 import './styles.css';
 
 const CHART_HEIGHT = 365;
-const CUBE_SIZE = 10;
+const CUBE_SIZE = 6;
 let totalIndex = 0;
 
 function createLineCords(startX, startY, count, nextY, nextX) {
@@ -47,6 +47,7 @@ function createSvgRectForPoint(
   rect.setAttributeNS(null, 'y', currentPointSet[1]);
   rect.setAttributeNS(null, 'height', CUBE_SIZE);
   rect.setAttributeNS(null, 'width', CUBE_SIZE);
+  rect.setAttributeNS(null, 'opacity', 0);
 
   if (previousPointSet && nextPointSet && !yValueWillChange) {
     rect.setAttributeNS(null, 'x', currentPointSet[0]);
@@ -58,14 +59,17 @@ function createSvgRectForPoint(
   return rect;
 }
 
-function createSvgAnimate(duration = 3) {
+function createSvgAnimate(index, duration = 10) {
   const svgns = 'http://www.w3.org/2000/svg';
   const animate = document.createElementNS(svgns, 'animate');
 
-  animate.setAttributeNS(null, 'attributeName', 'fill');
-  animate.setAttributeNS(null, 'values', '#ffb86c;#282a36;#ffb86c');
-  animate.setAttributeNS(null, 'dur', `${duration}s`);
-  animate.setAttributeNS(null, 'repeatCount', 'indefinite');
+  animate.setAttributeNS(null, 'attributeType', 'CSS');
+  animate.setAttributeNS(null, 'attributeName', 'opacity');
+  animate.setAttributeNS(null, 'dur', `1s`);
+  animate.setAttributeNS(null, 'fill', `freeze`);
+  animate.setAttributeNS(null, 'from', 0);
+  animate.setAttributeNS(null, 'to', 1);
+  animate.setAttributeNS(null, 'begin', `${index * duration}ms`);
 
   return animate;
 }
@@ -83,22 +87,9 @@ function renderPointsToSvg(points = []) {
     );
     const animate = createSvgAnimate(totalIndex);
 
-    // rect.appendChild(animate);
+    rect.appendChild(animate);
 
     document.getElementById('svgOne').appendChild(rect);
-
-    const randomInt = Math.floor(Math.random() * Math.floor(points.length / 2));
-
-    if (randomInt < 1) {
-      const rect2 = document.createElementNS(svgns, 'rect');
-      const animate2 = createSvgAnimate(totalIndex);
-      rect2.setAttributeNS(null, 'x', pointSet[0]);
-      rect2.setAttributeNS(null, 'y', pointSet[1] - CUBE_SIZE / 3);
-      rect2.setAttributeNS(null, 'height', CUBE_SIZE);
-      rect2.setAttributeNS(null, 'width', CUBE_SIZE);
-      // rect2.appendChild(animate2);
-      document.getElementById('svgOne').appendChild(rect2);
-    }
 
     totalIndex += 1;
   });
@@ -124,7 +115,23 @@ function app(data = [], renderer = renderPointsToSvg) {
 }
 
 function exampleUsage() {
-  const sampleData = [0, 20, 40, 100, 120, 140, 160, 300, 300, 200, 100, 50];
+  const sampleData = [
+    0,
+    20,
+    40,
+    100,
+    120,
+    140,
+    160,
+    300,
+    300,
+    350,
+    200,
+    100,
+    50,
+    120,
+    270
+  ];
 
   app(sampleData);
 }
