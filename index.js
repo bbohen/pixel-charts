@@ -2,16 +2,17 @@
 
 import './styles.css';
 
-const CHART_HEIGHT = 365;
+const DEFAULT_CHART_HEIGHT = 365;
 const CUBE_SIZE = 6;
+const SVGNS = 'http://www.w3.org/2000/svg';
 let totalIndex = 0;
 
-function createLineCords(startX, startY, count, nextY, nextX) {
+function createLineCords(startX, startY, count, nextY, nextX, chartHeight) {
   // TODO: Clean this turd up
   let x = startX;
-  let y = CHART_HEIGHT - startY;
-  let nexterY = CHART_HEIGHT - nextY;
-  const distance = CHART_HEIGHT - nextY - startY;
+  let y = chartHeight - startY;
+  let nexterY = chartHeight - nextY;
+  const distance = chartHeight - nextY - startY;
   // need to find the right amount of increase
   const a = startX - nextX;
   const b = startY - nextY;
@@ -37,8 +38,7 @@ function createSvgRectForPoint(
   nextPointSet,
   index
 ) {
-  const svgns = 'http://www.w3.org/2000/svg';
-  const rect = document.createElementNS(svgns, 'rect');
+  const rect = document.createElementNS(SVGNS, 'rect');
   const yValueWillChange =
     nextPointSet && nextPointSet[1] !== currentPointSet[1];
   const indexIsOdd = index & 1;
@@ -60,8 +60,7 @@ function createSvgRectForPoint(
 }
 
 function createSvgAnimate(index, duration = 10) {
-  const svgns = 'http://www.w3.org/2000/svg';
-  const animate = document.createElementNS(svgns, 'animate');
+  const animate = document.createElementNS(SVGNS, 'animate');
 
   animate.setAttributeNS(null, 'attributeType', 'CSS');
   animate.setAttributeNS(null, 'attributeName', 'opacity');
@@ -74,8 +73,34 @@ function createSvgAnimate(index, duration = 10) {
   return animate;
 }
 
+function renderChartBordersToSvg(chartHeight) {
+  const xGrid = document.createElementNS(SVGNS, 'g');
+  const xLine = document.createElementNS(SVGNS, 'line');
+  const yGrid = document.createElementNS(SVGNS, 'g');
+  const yLine = document.createElementNS(SVGNS, 'line');
+
+  xGrid.setAttributeNS(null, 'class', 'grid x-grid');
+  xGrid.setAttributeNS(null, 'id', 'xGrid');
+  xLine.setAttributeNS(null, 'x1', '0');
+  xLine.setAttributeNS(null, 'x2', '0');
+  xLine.setAttributeNS(null, 'y1', '5');
+  xLine.setAttributeNS(null, 'y2', `${chartHeight + 5}`);
+
+  yGrid.setAttributeNS(null, 'class', 'grid y-grid');
+  yGrid.setAttributeNS(null, 'id', 'yGrid');
+  yLine.setAttributeNS(null, 'x1', '0');
+  yLine.setAttributeNS(null, 'x2', '705');
+  yLine.setAttributeNS(null, 'y1', `${chartHeight + 5}`);
+  yLine.setAttributeNS(null, 'y2', `${chartHeight + 5}`);
+
+  xGrid.appendChild(xLine);
+  yGrid.appendChild(yLine);
+
+  document.getElementById('pixel-chart-svg').appendChild(xGrid);
+  document.getElementById('pixel-chart-svg').appendChild(yGrid);
+}
+
 function renderPointsToSvg(points = []) {
-  const svgns = 'http://www.w3.org/2000/svg';
   points.forEach((pointSet, index) => {
     const previousPointSet = points[index - 1];
     const nextPointSet = points[index + 1];
@@ -89,19 +114,24 @@ function renderPointsToSvg(points = []) {
 
     rect.appendChild(animate);
 
-    document.getElementById('svgOne').appendChild(rect);
+    document.getElementById('pixel-chart-svg').appendChild(rect);
 
     totalIndex += 1;
   });
 }
 
-function app(data = [], renderer = renderPointsToSvg) {
-  const ratio = Math.max.apply(Math, data) / CHART_HEIGHT;
+function app(
+  data = [],
+  chartHeight = DEFAULT_CHART_HEIGHT,
+  renderer = renderPointsToSvg
+) {
+  const ratio = Math.max.apply(Math, data) / chartHeight;
   const adjustedValues = data.map(value => Math.round(value / ratio));
   const increment = 50;
-  let currentX = 90;
+  let currentX = 0;
 
   // TODO: Add the initial x and y lines that frame the chart to the DOM after doing the above calculations
+  renderChartBordersToSvg(chartHeight);
 
   adjustedValues.forEach((item, index) => {
     const nextItem = adjustedValues[index + 1];
@@ -111,7 +141,8 @@ function app(data = [], renderer = renderPointsToSvg) {
         item,
         increment,
         nextItem,
-        currentX + increment
+        currentX + increment,
+        chartHeight
       );
       currentX += increment;
       renderer(points);
@@ -138,7 +169,7 @@ function exampleUsage() {
     270
   ];
 
-  app(sampleData);
+  app(sampleData, 365);
 }
 
 window.onload = exampleUsage;
