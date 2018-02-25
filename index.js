@@ -65,7 +65,7 @@ function createSvgAnimate(index, duration = 10) {
 
   animate.setAttributeNS(null, 'attributeType', 'CSS');
   animate.setAttributeNS(null, 'attributeName', 'opacity');
-  animate.setAttributeNS(null, 'dur', `1s`);
+  animate.setAttributeNS(null, 'dur', `100ms`);
   animate.setAttributeNS(null, 'fill', `freeze`);
   animate.setAttributeNS(null, 'from', 0);
   animate.setAttributeNS(null, 'to', 1);
@@ -96,10 +96,15 @@ function renderPointsToSvg(points = []) {
 }
 
 function app(data = [], renderer = renderPointsToSvg) {
+  const ratio = Math.max.apply(Math, data) / CHART_HEIGHT;
+  const adjustedValues = data.map(value => Math.round(value / ratio));
   const increment = 50;
   let currentX = 90;
-  data.forEach((item, index) => {
-    const nextItem = data[index + 1];
+
+  // TODO: Add the initial x and y lines that frame the chart to the DOM after doing the above calculations
+
+  adjustedValues.forEach((item, index) => {
+    const nextItem = adjustedValues[index + 1];
     if (nextItem) {
       const points = createLineCords(
         currentX,

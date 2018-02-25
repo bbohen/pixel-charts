@@ -1,6 +1,7 @@
 Must
 
-* Scale the chart based on values provided
+* Add x,y line elements for chart border to DOM after doing calculations
+* Dynamic max height
 * Tests
 * Docs and release
 
