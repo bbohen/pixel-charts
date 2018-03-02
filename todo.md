@@ -1,7 +1,6 @@
 Must
 
-* Add x,y line elements for chart border to DOM after doing calculations
-* Dynamic max height
+* Better func signatures? (too many options)
 * Tests
 * Docs and release
 

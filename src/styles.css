@@ -1,0 +1,20 @@
+body {
+  background: #282a36;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#pixel-chart-svg {
+  fill: #ffb86c;
+  height: 100%;
+  width: 100%;
+}
+
+#pixel-chart-svg .grid {
+  stroke: #44475a;
+  stroke-dasharray: 0;
+  stroke-width: 1;
+}
+
+.data {
+  stroke-width: 1;
+}
