@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel example.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Brad Bohen",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.2",
     "parcel-bundler": "^1.6.2"
   }
 }

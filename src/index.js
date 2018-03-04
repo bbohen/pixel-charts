@@ -1,4 +1,4 @@
-import createCoordinates from './createCoordinates';
+import createLineCoordinates from './createLineCoordinates';
 import svgRenderer, { createParent } from './svgRenderer';
 
 import './styles.css';
@@ -21,7 +21,7 @@ export default function app(
   valuesAdjustedForChartHeight.forEach((value, index) => {
     const nextValue = valuesAdjustedForChartHeight[index + 1];
     if (nextValue) {
-      const coordinates = createCoordinates(
+      const coordinates = createLineCoordinates(
         currentX,
         value,
         currentX + increment,

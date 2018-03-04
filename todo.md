@@ -1,6 +1,5 @@
 Must
 
-* Better func signatures? (too many options)
 * Tests
 * Docs and release
 

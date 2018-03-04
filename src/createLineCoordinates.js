@@ -1,6 +1,6 @@
 const CUBE_SIZE = 6;
 
-export default function createCoordinates(
+export default function createLineCoordinates(
   currentX,
   currentY,
   nextX,
