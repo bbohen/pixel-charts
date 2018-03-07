@@ -1,9 +1,8 @@
 import createLineCoordinates from './createLineCoordinates';
 import svgRenderer from './svgRenderer';
+import { DEFAULT_CHART_HEIGHT } from './constants';
 
 import './styles.css';
-
-const DEFAULT_CHART_HEIGHT = 365;
 
 export default function app(
   data = [],

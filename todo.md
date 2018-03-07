@@ -1,14 +1,15 @@
 Must
 
 * Readme
-* npm
-* release
+* npm / release
 
 Nice to have
 
 * More tests
+* Party mode
+* CI
 * Multiple lines based on passed values
-* Things that make it look cooler
+* Things that make it look better
 * Legends, markers
 
 Future
