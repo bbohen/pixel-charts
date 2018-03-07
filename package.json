@@ -4,6 +4,7 @@
   "description": "Pixel Charts",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "start": "parcel example.html",
     "test": "jest"
   },
@@ -11,6 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
     "jest": "^22.4.2",
     "parcel-bundler": "^1.6.2"
   }

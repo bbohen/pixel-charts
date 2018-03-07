@@ -21,7 +21,7 @@ function createSvgRectForCoordinates(
   const rect = document.createElementNS(NAMESPACE, 'rect');
   const yValueWillChange =
     nextCoordinate && nextCoordinate[1] !== currentPointSet[1];
-  const indexIsOdd = index & 1;
+  const indexIsOdd = index & 1; // eslint-disable-line
 
   rect.setAttributeNS(null, 'x', currentPointSet[0]);
   rect.setAttributeNS(null, 'y', currentPointSet[1]);

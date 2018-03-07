@@ -1,5 +1,5 @@
 import createLineCoordinates from './createLineCoordinates';
-import svgRenderer, { createParent } from './svgRenderer';
+import svgRenderer from './svgRenderer';
 
 import './styles.css';
 
@@ -11,7 +11,7 @@ export default function app(
   idOfElementToAppendTo = 'pixel-chart',
   renderer = svgRenderer
 ) {
-  const heightRatio = Math.max.apply(Math, data) / chartHeight;
+  const heightRatio = Math.max(...data) / chartHeight;
   const valuesAdjustedForChartHeight = data.map(value =>
     Math.round(value / heightRatio)
   );
@@ -19,12 +19,13 @@ export default function app(
   let currentX = 0;
 
   valuesAdjustedForChartHeight.forEach((value, index) => {
+    const nextX = currentX + increment;
     const nextValue = valuesAdjustedForChartHeight[index + 1];
     if (nextValue) {
       const coordinates = createLineCoordinates(
         currentX,
         value,
-        currentX + increment,
+        nextX,
         nextValue,
         increment,
         chartHeight

@@ -16,13 +16,13 @@ export default function createLineCoordinates(
   const calculatedDistance = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
   const angleRadians = Math.atan2(adjustedNextY - y, nextX - currentX);
 
+  // Create a line of x/y coordinates to the next set of points
   return Array.apply(0, Array(Math.ceil(calculatedDistance / CUBE_SIZE))).map(
-    function(element, index) {
+    () => {
       const result = [x, y];
-      const indexIsOdd = index & 1;
 
-      y += CUBE_SIZE * Math.sin(angleRadians);
       x += CUBE_SIZE * Math.cos(angleRadians);
+      y += CUBE_SIZE * Math.sin(angleRadians);
 
       return result;
     }

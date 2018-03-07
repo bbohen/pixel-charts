@@ -1,10 +1,12 @@
 Must
 
-* Tests
-* Docs and release
+* Readme
+* npm
+* release
 
 Nice to have
 
+* More tests
 * Multiple lines based on passed values
 * Things that make it look cooler
 * Legends, markers
