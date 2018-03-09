@@ -1,6 +1,6 @@
 ![pixel charts](example/logo.png)
 
-Simple charting library with lines between values represented as series of boxes.
+Simple charting library with lines between values represented as series of boxes and 0 runtime dependencies.
 
 ![example](example/example.gif)
 
