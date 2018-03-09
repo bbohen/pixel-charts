@@ -1,14 +1,23 @@
 {
   "name": "pixel-charts",
-  "version": "0.0.0",
-  "description": "Pixel Charts",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description":
+    "Simple charting library with lines between values represented as series of boxes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbohen/pixel-charts"
+  },
+  "main": "dist/index.js",
+  "unpkg": "dist/index.js",
+  "files": ["dist"],
   "scripts": {
+    "dist": "rimraf dist && parcel build src/index.js",
     "lint": "eslint .",
-    "start": "parcel example.html",
+    "prepublish": "npm run lint && npm run test && npm run dist",
+    "start": "parcel example/example.html",
     "test": "jest"
   },
-  "author": "Brad Bohen",
+  "author": "Brad Bohen bbohen@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
@@ -17,6 +26,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
     "jest": "^22.4.2",
-    "parcel-bundler": "^1.6.2"
+    "parcel-bundler": "^1.6.2",
+    "rimraf": "^2.6.2"
   }
 }

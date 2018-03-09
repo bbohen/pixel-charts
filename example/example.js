@@ -1,5 +1,5 @@
-import pixelCharts from './src';
-import createRandomValues from './test/helpers';
+import chart from '../src';
+import createRandomValues from '../test/helpers';
 
 function exampleUsage() {
   // For the sake of an example, set the max value of the random numbers to the height of the chart
@@ -9,7 +9,7 @@ function exampleUsage() {
   const randomValuesLength = 16;
   const randomValues = createRandomValues(randomValuesLength, chartHeight);
 
-  pixelCharts(randomValues, chartHeight, chartId);
+  chart(randomValues, chartHeight, chartId);
 }
 
 window.onload = exampleUsage;

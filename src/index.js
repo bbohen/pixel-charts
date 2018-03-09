@@ -2,8 +2,6 @@ import createLineCoordinates from './createLineCoordinates';
 import svgRenderer from './svgRenderer';
 import { DEFAULT_CHART_HEIGHT } from './constants';
 
-import './styles.css';
-
 export default function app(
   data = [],
   chartHeight = DEFAULT_CHART_HEIGHT,
