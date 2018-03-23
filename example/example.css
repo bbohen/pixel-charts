@@ -9,6 +9,10 @@ body {
   width: 100%;
 }
 
+#example-chart {
+  height: 500px;
+}
+
 .data {
   stroke-width: 1;
 }

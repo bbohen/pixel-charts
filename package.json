@@ -1,32 +1,38 @@
 {
   "name": "pixel-charts",
-  "version": "0.1.0",
-  "description":
-    "Simple charting library with lines between values represented as series of boxes",
+  "version": "0.2.1",
+  "description": "Simple charting library with lines between values represented as series of boxes",
   "repository": {
     "type": "git",
     "url": "https://github.com/bbohen/pixel-charts"
   },
-  "main": "dist/index.js",
-  "unpkg": "dist/index.js",
-  "files": ["dist"],
+  "main": "dist/main.js",
+  "unpkg": "dist/main.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dist": "rimraf dist && parcel build src/index.js",
+    "build": "rimraf dist && webpack --mode production",
     "lint": "eslint .",
-    "prepublish": "npm run lint && npm run test && npm run dist",
-    "start": "parcel example/example.html",
+    "prepare": "npm run lint && npm run test && npm run build",
+    "start": "webpack-dev-server --config example/webpack.config.js --open --mode development",
     "test": "jest"
   },
   "author": "Brad Bohen bbohen@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.0.7",
     "jest": "^22.4.2",
-    "parcel-bundler": "^1.6.2",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
   }
 }
