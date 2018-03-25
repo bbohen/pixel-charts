@@ -1,5 +1,5 @@
-import createLineCoordinates from './createLineCoordinates';
-import svgRenderer from './svgRenderer';
+import createLineCoordinates from './helpers/createLineCoordinates';
+import svgRenderer from './renderers/svg';
 import { DEFAULT_CHART_HEIGHT } from './constants';
 
 export default function app(

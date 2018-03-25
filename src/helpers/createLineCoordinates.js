@@ -1,4 +1,4 @@
-import { CUBE_SIZE } from './constants';
+import { CUBE_SIZE } from '../constants';
 
 export default function createLineCoordinates(
   currentX,

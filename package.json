@@ -1,21 +1,21 @@
 {
   "name": "pixel-charts",
   "version": "0.2.1",
-  "description": "Simple charting library with lines between values represented as series of boxes",
+  "description":
+    "Simple charting library with lines between values represented as series of boxes",
   "repository": {
     "type": "git",
     "url": "https://github.com/bbohen/pixel-charts"
   },
   "main": "dist/main.js",
   "unpkg": "dist/main.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "rimraf dist && webpack --mode production",
     "lint": "eslint .",
     "prepare": "npm run lint && npm run test && npm run build",
-    "start": "webpack-dev-server --config example/webpack.config.js --open --mode development",
+    "start":
+      "webpack-dev-server --config example/webpack.config.js --open --mode development",
     "test": "jest"
   },
   "author": "Brad Bohen bbohen@gmail.com",

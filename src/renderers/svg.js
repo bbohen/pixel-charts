@@ -1,11 +1,12 @@
-import { CUBE_SIZE, NAMESPACE, PIXEL_CHART_ID } from './constants';
+import { CUBE_SIZE, NAMESPACE } from '../constants';
+import createPixelChartSVGId from '../helpers/createPixelChartSVGId';
 
 let totalIndex = 0;
 
-export function createParent() {
+export function createParent(id) {
   const svg = document.createElementNS(NAMESPACE, 'svg');
 
-  svg.setAttributeNS(null, 'id', PIXEL_CHART_ID);
+  svg.setAttributeNS(null, 'id', createPixelChartSVGId(id));
   svg.setAttributeNS(null, 'version', '1.2');
 
   return svg;
@@ -57,10 +58,12 @@ export default function svgRenderer(
   chartHeight,
   idOfElementToAppendTo
 ) {
-  let pixelChartElement = document.getElementById(PIXEL_CHART_ID);
+  let pixelChartElement = document.getElementById(
+    createPixelChartSVGId(idOfElementToAppendTo)
+  );
 
   if (!pixelChartElement) {
-    pixelChartElement = createParent();
+    pixelChartElement = createParent(idOfElementToAppendTo);
     document
       .getElementById(idOfElementToAppendTo)
       .appendChild(pixelChartElement);

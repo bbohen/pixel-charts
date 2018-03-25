@@ -3,7 +3,7 @@ body {
   font-family: 'VT323', monospace;
 }
 
-#pixel-chart-svg {
+#pixel-chart-svg-example-chart {
   fill: #ffb86c;
   height: 100%;
   width: 100%;

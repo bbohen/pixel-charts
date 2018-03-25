@@ -1,4 +1,4 @@
-import createLineCoordinates from '../../src/createLineCoordinates';
+import createLineCoordinates from '../../src/helpers/createLineCoordinates';
 
 test('createLineCoordinates creates a proper set of coordinates', () => {
   const currentX = 0;
