@@ -27,7 +27,7 @@ function createSvgRectForCoordinates(
   rect.setAttributeNS(null, 'y', currentPointSet[1]);
   rect.setAttributeNS(null, 'height', CUBE_SIZE);
   rect.setAttributeNS(null, 'width', CUBE_SIZE);
-  rect.setAttributeNS(null, 'opacity', 0);
+  rect.setAttributeNS(null, 'opacity', 1);
 
   if (previousCoordinate && nextCoordinate && !yValueWillChange) {
     rect.setAttributeNS(null, 'x', currentPointSet[0]);
