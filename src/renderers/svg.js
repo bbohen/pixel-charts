@@ -3,7 +3,7 @@ import createPixelChartSVGId from '../helpers/createPixelChartSVGId';
 
 let totalIndex = 0;
 
-export function createParent(id) {
+function createParent(id) {
   const svg = document.createElementNS(NAMESPACE, 'svg');
 
   svg.setAttributeNS(null, 'id', createPixelChartSVGId(id));

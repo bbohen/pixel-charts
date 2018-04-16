@@ -12,18 +12,24 @@ export default function app(
   const valuesAdjustedForChartHeight = data.map(value =>
     Math.round(value / heightRatio)
   );
+  const pixelChartElement = document.getElementById(idOfElementToAppendTo);
   const increment = 50;
   let currentX = 0;
 
+  if (pixelChartElement) {
+    pixelChartElement.innerHTML = '';
+  }
+
   valuesAdjustedForChartHeight.forEach((value, index) => {
+    const currentY = value;
     const nextX = currentX + increment;
-    const nextValue = valuesAdjustedForChartHeight[index + 1];
-    if (nextValue) {
+    const nextY = valuesAdjustedForChartHeight[index + 1];
+    if (nextY) {
       const coordinates = createLineCoordinates(
         currentX,
-        value,
+        currentY,
         nextX,
-        nextValue,
+        nextY,
         increment,
         chartHeight
       );
