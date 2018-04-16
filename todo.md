@@ -1,3 +1,4 @@
+* Resolve issue with multiple charts having too much of an animation delay
 * More tests (E2E using puppeteer?)
 * Party mode
 * CI

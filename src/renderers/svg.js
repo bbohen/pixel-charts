@@ -1,7 +1,7 @@
 import { CUBE_SIZE, NAMESPACE } from '../constants';
 import createPixelChartSVGId from '../helpers/createPixelChartSVGId';
 
-let totalIndex = 0;
+let totalIndex = 0; // eslint-disable-line
 
 function createParent(id) {
   const svg = document.createElementNS(NAMESPACE, 'svg');
@@ -39,19 +39,21 @@ function createSvgRectForCoordinates(
   return rect;
 }
 
-function createSvgAnimation(index, duration = 10) {
-  const animation = document.createElementNS(NAMESPACE, 'animate');
+// @deprecated
+// Not being used until delayed render issue resolved
+// function createSvgAnimation(index, duration = 10) {
+//   const animation = document.createElementNS(NAMESPACE, 'animate');
 
-  animation.setAttributeNS(null, 'attributeType', 'CSS');
-  animation.setAttributeNS(null, 'attributeName', 'opacity');
-  animation.setAttributeNS(null, 'dur', `100ms`);
-  animation.setAttributeNS(null, 'fill', `freeze`);
-  animation.setAttributeNS(null, 'from', 0);
-  animation.setAttributeNS(null, 'to', 1);
-  animation.setAttributeNS(null, 'begin', `${index * duration}ms`);
+//   animation.setAttributeNS(null, 'attributeType', 'CSS');
+//   animation.setAttributeNS(null, 'attributeName', 'opacity');
+//   animation.setAttributeNS(null, 'dur', `100ms`);
+//   animation.setAttributeNS(null, 'fill', `freeze`);
+//   animation.setAttributeNS(null, 'from', 0);
+//   animation.setAttributeNS(null, 'to', 1);
+//   animation.setAttributeNS(null, 'begin', `${index * duration}ms`);
 
-  return animation;
-}
+//   return animation;
+// }
 
 export default function svgRenderer(
   coordinates = [],
@@ -78,9 +80,11 @@ export default function svgRenderer(
       nextCoordinate,
       index
     );
-    const animation = createSvgAnimation(totalIndex);
 
-    rect.appendChild(animation);
+    // Disabled animations until delayed render issue resolved
+    // const animation = createSvgAnimation(totalIndex);
+    // rect.appendChild(animation);
+
     pixelChartElement.appendChild(rect);
     totalIndex += 1;
   });
