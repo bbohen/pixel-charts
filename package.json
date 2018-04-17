@@ -1,6 +1,6 @@
 {
   "name": "pixel-charts",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description":
     "Simple charting library with lines between values represented as series of boxes",
   "repository": {
