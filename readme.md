@@ -21,9 +21,11 @@ function exampleUsage() {
   // Optional
   const chartHeight = 400;
   // Optional
+  const interval = 10;
+  // Optional
   const chartId = 'example-chart';
 
-  chart(values, chartHeight, chartId);
+  chart(values, chartHeight, interval, chartId);
 }
 
 window.onload = exampleUsage;
