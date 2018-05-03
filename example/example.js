@@ -8,8 +8,14 @@ function exampleUsage() {
   const chartId = 'example-chart';
   const randomValuesLength = 16;
   const randomValues = createRandomValues(randomValuesLength, chartHeight);
+  const options = {
+    data: randomValues,
+    height: chartHeight,
+    increment: 50,
+    chartId
+  };
 
-  chart(randomValues, chartHeight, 50, chartId);
+  chart(options);
 }
 
 window.onload = exampleUsage;

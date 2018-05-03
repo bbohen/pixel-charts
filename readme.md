@@ -16,16 +16,18 @@ npm install pixel-charts --save
 import chart from 'pixel-charts';
 
 function exampleUsage() {
-  // Y axis is scaled to match these values
-  const values = [10, 15, 30, 60];
-  // Optional
-  const chartHeight = 400;
-  // Optional
-  const interval = 10;
-  // Optional
-  const chartId = 'example-chart';
+  const options = {
+    // Y axis is scaled to match these values
+    data: [10, 15, 30, 60],
+    // Optional
+    height: 400,
+    // Optional
+    increment: 10,
+    // Optional
+    chartId: 'example-chart'
+  };
 
-  chart(values, chartHeight, interval, chartId);
+  chart(options);
 }
 
 window.onload = exampleUsage;

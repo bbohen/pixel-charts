@@ -2,18 +2,18 @@ import createLineCoordinates from './helpers/createLineCoordinates';
 import svgRenderer from './renderers/svg';
 import { DEFAULT_CHART_HEIGHT } from './constants';
 
-export default function app(
+export default function app({
+  chartId = 'pixel-chart',
   data = [],
-  chartHeight = DEFAULT_CHART_HEIGHT,
+  height = DEFAULT_CHART_HEIGHT,
   increment = 50,
-  idOfElementToAppendTo = 'pixel-chart',
   renderer = svgRenderer
-) {
-  const heightRatio = Math.max(...data) / chartHeight;
+}) {
+  const heightRatio = Math.max(...data) / height;
   const valuesAdjustedForChartHeight = data.map(value =>
     Math.round(value / heightRatio)
   );
-  const pixelChartElement = document.getElementById(idOfElementToAppendTo);
+  const pixelChartElement = document.getElementById(chartId);
   let currentX = 0;
 
   if (pixelChartElement) {
@@ -31,11 +31,11 @@ export default function app(
         nextX,
         nextY,
         increment,
-        chartHeight
+        height
       );
 
       currentX += increment;
-      renderer(coordinates, chartHeight, idOfElementToAppendTo);
+      renderer(coordinates, height, chartId);
     }
   });
 }
